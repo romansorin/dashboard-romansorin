@@ -1,10 +1,9 @@
+const webpackConfig = require('./webpack.config')
+
 const mix = require('laravel-mix')
 
 require('laravel-mix-tailwind')
 require('laravel-mix-purgecss')
-
-
-const webpackConfig 
 
 mix.webpackConfig(webpackConfig)
 /*
