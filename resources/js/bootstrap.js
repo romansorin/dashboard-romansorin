@@ -6,12 +6,21 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
+<<<<<<< HEAD
+// try {
+//     window.Popper = require('popper.js').default;
+//     window.$ = window.jQuery = require('jquery');
+
+//     require('bootstrap');
+// } catch (e) {}
+=======
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
 } catch (e) {}
+>>>>>>> master
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -29,7 +38,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo';
+// import Echo from 'laravel-echo'
 
 // window.Pusher = require('pusher-js');
 
