@@ -21,6 +21,7 @@
 </head>
 
 <body class="bg-gray-100 h-screen antialiased leading-none">
+    <div id="root"></div>
     <div id="app">
         <nav class="bg-blue-900 shadow mb-8 py-6">
             <div class="container mx-auto px-6 md:px-0">
