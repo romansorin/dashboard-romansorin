@@ -11,7 +11,15 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @env('production')
+    <link href="{{ mix('app.css') }}" rel="stylesheet" />
+    @endenv
+
+    @env('local')
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
+    @endenv
+</head>
+
 </head>
 
 <body class="bg-gray-100 h-screen antialiased leading-none">
@@ -48,10 +56,21 @@
         </nav>
 
         @yield('content')
+
+
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
+
+    @env('production')
+    <script charset="utf8" src="{{ mix('app.js') }}"></script>
+    <script charset="utf8" src="{{ mix('vendors~app.js') }}"></script>
+    @endenv
+
+    @env('local')
+    <script charset="utf8" src="{{ asset('/js/app.js') }}"></script>
+    <script charset="utf8" src="{{ asset('/js/vendors~app.js') }}"></script>
+    @endenv
+
 </body>
 
 </html>
