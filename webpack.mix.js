@@ -14,6 +14,7 @@ require('laravel-mix-purgecss');
  |
  */
 
+<<<<<<< HEAD
 mix.js('resources/js/app.js', 'public/js')
    .postCss('resources/css/app.css', 'public/css')
    .tailwind('./tailwind.config.js');
@@ -23,3 +24,7 @@ if (mix.inProduction()) {
    .version()
    .purgeCss();
 }
+=======
+mix.react('resources/js/app.js', 'public/js')
+   .sass('resources/sass/app.scss', 'public/css');
+>>>>>>> master

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<<<<<<< HEAD
     <div class="flex items-center">
         <div class="md:w-1/2 md:mx-auto">
 
@@ -20,8 +21,28 @@
                     <p class="text-gray-700">
                         You are logged in!
                     </p>
+=======
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
+>>>>>>> master
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+</div>
+>>>>>>> master
 @endsection
