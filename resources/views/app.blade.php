@@ -23,12 +23,10 @@
 <body class="bg-gray-100 h-screen antialiased leading-none">
     <div id="root"></div>
 
-
-
+    <script charset="utf8" src="{{ asset('/js/app.js') }}"></script>
     @env('production')
     <script charset="utf8" src="{{ mix('app.js') }}"></script>
     @elseenv('local')
-    <script charset="utf8" src="{{ asset('/js/app.js') }}"></script>
     @endenv
 
 </body>

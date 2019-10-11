@@ -1,11 +1,16 @@
-import React from 'react'
+import { hot } from 'react-hot-loader/root'
+import React, { useEffect } from 'react'
+import Example from './components/Example'
 
 const App = () => {
+  useEffect(() => {
+    alert('hello world')
+  }, [])
   return (
     <div className='App'>
-      <h1> Hello, World! </h1>
+      <Example />
     </div>
   )
 }
 
-export default App
+export default hot(App)

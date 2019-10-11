@@ -1,3 +1,4 @@
+import 'react-hot-loader'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
@@ -9,5 +10,12 @@ axios.defaults.headers.common = {
   'X-CSRF-TOKEN': token.content,
   'X-Requested-With': 'XMLHttpRequest'
 }
-
+console.log('working')
 ReactDOM.render(<App />, document.getElementById('root'))
+
+/**
+ * Webpack Hot Module Replacement API
+ */
+if (module.hot) {
+  module.hot.accept()
+}
