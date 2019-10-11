@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "42dcae5a78a1de70ed4f";
+/******/ 	var hotCurrentHash = "dc8a620e44063e84353d";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -34863,6 +34863,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    alert('hello world');
+  }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "App"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " Hello, World! "));
@@ -34897,7 +34900,15 @@ axios__WEBPACK_IMPORTED_MODULE_2___default.a.defaults.headers.common = {
   'X-CSRF-TOKEN': token.content,
   'X-Requested-With': 'XMLHttpRequest'
 };
+alert('fucking work');
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App_js__WEBPACK_IMPORTED_MODULE_3__["default"], null), document.getElementById('root'));
+/**
+ * Webpack Hot Module Replacement API
+ */
+
+if (true) {
+  module.hot.accept();
+}
 
 /***/ })
 
