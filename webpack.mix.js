@@ -18,7 +18,7 @@ mix.webpackConfig(webpackConfig)
  */
 
 mix
-  .react('resources/js/app.js', 'public/js')
+  .react('resources/js/index.js', 'public/js')
   .postCss('resources/css/app.css', 'public/css')
   .tailwind('./tailwind.config.js')
 

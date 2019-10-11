@@ -1,34 +1,78 @@
 const path = require('path')
 const webpack = require('webpack')
+const ManifestPlugin = require('webpack-manifest-plugin')
+
+const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  // entry: './resources/js/index.js',
-  // mode: 'development',
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.(js|jsx)$/,
-  //       exclude: /(node_modules|bower_components)/,
-  //       loader: 'babel-loader',
-  //       options: { presets: ['@babel/env'] }
-  //     },
-  //     {
-  //       test: /\.css$/,
-  //       use: ['style-loader', 'css-loader']
-  //     }
-  //   ]
-  // },
-  // resolve: { extensions: ['*', '.js', '.jsx'] },
-  // output: {
-  //   path: path.resolve(__dirname, 'dist/'),
-  //   publicPath: '/dist/',
-  //   filename: 'bundle.js'
-  // },
-  // devServer: {
-  //   contentBase: path.join(__dirname, 'public/'),
-  //   port: 3000,
-  //   publicPath: 'http://localhost:3000/dist/',
-  //   hotOnly: true
-  // },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  mode: isProd ? 'production' : 'development',
+
+  entry: {
+    app: path.join(__dirname, 'resources/js/index.js')
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: { presets: ['@babel/env'] }
+      }
+    ]
+  },
+
+  output: {
+    filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
+    path: path.join(__dirname, 'public/'),
+    publicPath: '/'
+  },
+
+  devtool: isProd ? undefined : 'inline-source-map',
+
+  devServer: isProd
+    ? undefined
+    : {
+      host: '127.0.0.1',
+      port: 9000,
+      historyApiFallback: true,
+      hot: true,
+      inline: true,
+      contentBase: path.join(__dirname, 'public'),
+
+      proxy: {
+        '*': {
+          target: 'http://127.0.0.1:8000',
+          changeOrigin: true
+        }
+      },
+
+      watchOptions: {
+        aggregateTimeout: 300,
+        poll: 2000
+      }
+    },
+
+  resolve: {
+    alias: { 'react-dom': '@hot-loader/react-dom' },
+    modules: [
+      'node_modules',
+      path.join(__dirname, 'resources/js'),
+      path.join(__dirname, 'resources/img')
+    ],
+    extensions: ['.js', '.jsx', '.json']
+  },
+
+  plugins: [
+    new webpack.EnvironmentPlugin(['NODE_ENV']),
+
+    new webpack.NamedModulesPlugin(),
+
+    new ManifestPlugin({
+      // Call the manifest mix-manifest so that we can use
+      // Laravel's mix() helper to serve assets
+      fileName: 'mix-manifest.json',
+      basePath: '/'
+    })
+  ]
 }
