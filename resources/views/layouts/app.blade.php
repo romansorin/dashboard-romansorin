@@ -13,9 +13,7 @@
     <!-- Styles -->
     @env('production')
     <link href="{{ mix('app.css') }}" rel="stylesheet" />
-    @endenv
-
-    @env('local')
+    @elseenv('local')
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
     @endenv
 </head>
@@ -64,9 +62,7 @@
     @env('production')
     <script charset="utf8" src="{{ mix('app.js') }}"></script>
     <script charset="utf8" src="{{ mix('vendors~app.js') }}"></script>
-    @endenv
-
-    @env('local')
+    @elseenv('local')
     <script charset="utf8" src="{{ asset('/js/app.js') }}"></script>
     <script charset="utf8" src="{{ asset('/js/vendors~app.js') }}"></script>
     @endenv
