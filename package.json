@@ -25,5 +25,8 @@
         "sass-loader": "^7.1.0",
         "standard": "^14.3.1",
         "tailwindcss": "^1.0"
+    },
+    "dependencies": {
+        "react-hot-loader": "^4.12.15"
     }
 }
