@@ -7,7 +7,7 @@ const Login = () => {
         <div className='w-full max-w-sm'>
           <div className='flex flex-col break-words bg-white border border-2 rounded shadow-md'>
             <div className='font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0'>
-              ('Login')
+              Login
             </div>
 
             <form
@@ -20,7 +20,7 @@ const Login = () => {
                   for='email'
                   className='block text-gray-700 text-sm font-bold mb-2'
                 >
-                  __('E-Mail Address') :
+                  E-Mail Address
                 </label>
 
                 <input
@@ -28,13 +28,13 @@ const Login = () => {
                   type='email'
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline $errors->has('email') ? ' border-red-500' : '' "
                   name='email'
-                  value=" old('email') "
+                  value=''
                   required
                   autofocus
                 />
 
                 <p className='text-red-500 text-xs italic mt-4'>
-                  $errors->first('email')
+                  This field has an error.
                 </p>
               </div>
 
@@ -43,7 +43,7 @@ const Login = () => {
                   for='password'
                   className='block text-gray-700 text-sm font-bold mb-2'
                 >
-                  __('Password') :
+                  Password
                 </label>
                 <input
                   id='password'
@@ -52,11 +52,10 @@ const Login = () => {
                   name='password'
                   required
                 />
-                @if ($errors->has('password'))
+
                 <p className='text-red-500 text-xs italic mt-4'>
-                  $errors->first('password')
+                  This field has an error.
                 </p>
-                @endif
               </div>
 
               <div className='flex mb-6'>
@@ -68,7 +67,7 @@ const Login = () => {
                 />
 
                 <label className='text-sm text-gray-700 ml-3' for='remember'>
-                  __('Remember Me')
+                  Remember Me
                 </label>
               </div>
 
@@ -77,18 +76,18 @@ const Login = () => {
                   type='submit'
                   className='bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
                 >
-                  __('Login')
+                  Login
                 </button>
-                @if (Route::has('password.request'))
+
                 <a
                   className='text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline ml-auto'
                   href=" route('password.request') "
                 >
-                  __('Forgot Your Password?')
+                  Forgot Your Password?
                 </a>
-                @endif @if (Route::has('register'))
+
                 <p className='w-full text-xs text-center text-gray-700 mt-8 -mb-4'>
-                  Don't have an account?
+                  Don't have an account?{' '}
                   <a
                     className='text-blue-500 hover:text-blue-700 no-underline'
                     href=" route('register') "
@@ -96,7 +95,6 @@ const Login = () => {
                     Register
                   </a>
                 </p>
-                @endif
               </div>
             </form>
           </div>
@@ -105,3 +103,5 @@ const Login = () => {
     </div>
   )
 }
+
+export default Login
