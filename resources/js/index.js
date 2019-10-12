@@ -10,7 +10,7 @@ axios.defaults.headers.common = {
   'X-CSRF-TOKEN': token.content,
   'X-Requested-With': 'XMLHttpRequest'
 }
-console.log('working')
+
 ReactDOM.render(<App />, document.getElementById('root'))
 
 /**
