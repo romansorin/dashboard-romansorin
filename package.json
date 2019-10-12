@@ -34,7 +34,8 @@
         "webpack-manifest-plugin": "^2.2.0"
     },
     "dependencies": {
+        "@hot-loader/react-dom": "^16.9.0",
         "react-hot-loader": "^4.12.15",
-        "@hot-loader/react-dom": "^16.9.0"
+        "react-router-dom": "^5.1.2"
     }
 }
