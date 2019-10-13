@@ -33,6 +33,7 @@
     "prettier-standard": "^15.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "redux-devtools": "^3.5.0",
     "resolve-url-loader": "^2.3.1",
     "sass": "^1.15.2",
     "sass-loader": "^7.1.0",
@@ -41,7 +42,11 @@
     "webpack-manifest-plugin": "^2.2.0"
   },
   "dependencies": {
+    "@hot-loader/react-dom": "^16.9.0",
     "react-hot-loader": "^4.12.15",
-    "@hot-loader/react-dom": "^16.9.0"
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"
   }
 }

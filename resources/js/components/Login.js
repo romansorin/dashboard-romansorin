@@ -1,84 +1,107 @@
-// @extends('layouts.app')
+import React from 'react'
 
-// @section('content')
-// <div class="container mx-auto">
-//     <div class="flex flex-wrap justify-center">
-//         <div class="w-full max-w-sm">
-//             <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+const Login = () => {
+  return (
+    <div className='container mx-auto'>
+      <div className='flex flex-wrap justify-center'>
+        <div className='w-full max-w-sm'>
+          <div className='flex flex-col break-words bg-white border border-2 rounded shadow-md'>
+            <div className='font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0'>
+              Login
+            </div>
 
-//                 <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
-//                     {{ __('Login') }}
-//                 </div>
+            <form
+              className='w-full p-6'
+              method='POST'
+              action=" route('login') "
+            >
+              <div className='flex flex-wrap mb-6'>
+                <label
+                  for='email'
+                  className='block text-gray-700 text-sm font-bold mb-2'
+                >
+                  E-Mail Address
+                </label>
 
-//                 <form class="w-full p-6" method="POST" action="{{ route('login') }}">
-//                     @csrf
+                <input
+                  id='email'
+                  type='email'
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline $errors->has('email') ? ' border-red-500' : '' "
+                  name='email'
+                  value=''
+                  required
+                  autofocus
+                />
 
-//                     <div class="flex flex-wrap mb-6">
-//                         <label for="email" class="block text-gray-700 text-sm font-bold mb-2">
-//                             {{ __('E-Mail Address') }}:
-//                         </label>
+                <p className='text-red-500 text-xs italic mt-4'>
+                  This field has an error.
+                </p>
+              </div>
 
-//                         <input id="email" type="email"
-//                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline{{ $errors->has('email') ? ' border-red-500' : '' }}"
-//                             name="email" value="{{ old('email') }}" required autofocus>
+              <div className='flex flex-wrap mb-6'>
+                <label
+                  for='password'
+                  className='block text-gray-700 text-sm font-bold mb-2'
+                >
+                  Password
+                </label>
+                <input
+                  id='password'
+                  type='password'
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline $errors->has('password') ? ' border-red-500' : '' "
+                  name='password'
+                  required
+                />
 
-//                         @if ($errors->has('email'))
-//                         <p class="text-red-500 text-xs italic mt-4">
-//                             {{ $errors->first('email') }}
-//                         </p>
-//                         @endif
-//                     </div>
+                <p className='text-red-500 text-xs italic mt-4'>
+                  This field has an error.
+                </p>
+              </div>
 
-//                     <div class="flex flex-wrap mb-6">
-//                         <label for="password" class="block text-gray-700 text-sm font-bold mb-2">
-//                             {{ __('Password') }}:
-//                         </label>
+              <div className='flex mb-6'>
+                <input
+                  type='checkbox'
+                  name='remember'
+                  id='remember'
+                  // 'checked' : ''
+                />
 
-//                         <input id="password" type="password"
-//                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline{{ $errors->has('password') ? ' border-red-500' : '' }}"
-//                             name="password" required>
+                <label className='text-sm text-gray-700 ml-3' for='remember'>
+                  Remember Me
+                </label>
+              </div>
 
-//                         @if ($errors->has('password'))
-//                         <p class="text-red-500 text-xs italic mt-4">
-//                             {{ $errors->first('password') }}
-//                         </p>
-//                         @endif
-//                     </div>
+              <div className='flex flex-wrap items-center'>
+                <button
+                  type='submit'
+                  className='bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                >
+                  Login
+                </button>
 
-//                     <div class="flex mb-6">
-//                         <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <a
+                  className='text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline ml-auto'
+                  href=" route('password.request') "
+                >
+                  Forgot Your Password?
+                </a>
 
-//                         <label class="text-sm text-gray-700 ml-3" for="remember">
-//                             {{ __('Remember Me') }}
-//                         </label>
-//                     </div>
+                <p className='w-full text-xs text-center text-gray-700 mt-8 -mb-4'>
+                  Don't have an account?{' '}
+                  <a
+                    className='text-blue-500 hover:text-blue-700 no-underline'
+                    href=" route('register') "
+                  >
+                    Register
+                  </a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
-//                     <div class="flex flex-wrap items-center">
-//                         <button type="submit"
-//                             class="bg-blue-500 hover:bg-blue-700 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-//                             {{ __('Login') }}
-//                         </button>
-
-//                         @if (Route::has('password.request'))
-//                         <a class="text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline ml-auto"
-//                             href="{{ route('password.request') }}">
-//                             {{ __('Forgot Your Password?') }}
-//                         </a>
-//                         @endif
-
-//                         @if (Route::has('register'))
-//                         <p class="w-full text-xs text-center text-gray-700 mt-8 -mb-4">
-//                             Don't have an account?
-//                             <a class="text-blue-500 hover:text-blue-700 no-underline" href="{{ route('register') }}">
-//                                 Register
-//                             </a>
-//                         </p>
-//                         @endif
-//                     </div>
-//                 </form>
-
-//             </div>
-//         </div>
-//     </div>
-// </div>
-// @endsection
+export default Login
