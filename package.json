@@ -1,40 +1,47 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "test": "jest --watchAll"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.6.2",
-        "@babel/preset-env": "^7.6.2",
-        "@babel/preset-react": "^7.0.0",
-        "axios": "^0.19",
-        "cross-env": "^5.1",
-        "jest": "^24.9.0",
-        "laravel-mix": "^4.0.14",
-        "laravel-mix-purgecss": "^4.1",
-        "laravel-mix-tailwind": "^0.1.0",
-        "lodash": "^4.17.13",
-        "plop": "^2.4.0",
-        "popper.js": "^1.12",
-        "prettier-standard": "^15.0.1",
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.15.2",
-        "sass-loader": "^7.1.0",
-        "standard": "^14.3.1",
-        "tailwindcss": "^1.0",
-        "webpack-manifest-plugin": "^2.2.0"
-    },
-    "dependencies": {
-        "react-hot-loader": "^4.12.15",
-        "@hot-loader/react-dom": "^16.9.0"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules",
+    "watch": "npm run development -- --watch",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "test": "jest --watchAll",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^5.2.3",
+    "@storybook/addon-links": "^5.2.3",
+    "@storybook/addons": "^5.2.3",
+    "@storybook/react": "^5.2.3",
+    "axios": "^0.19",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^5.1",
+    "jest": "^24.9.0",
+    "laravel-mix": "^4.0.14",
+    "laravel-mix-purgecss": "^4.1",
+    "laravel-mix-tailwind": "^0.1.0",
+    "lodash": "^4.17.13",
+    "plop": "^2.4.0",
+    "popper.js": "^1.12",
+    "prettier-standard": "^15.0.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "resolve-url-loader": "^2.3.1",
+    "sass": "^1.15.2",
+    "sass-loader": "^7.1.0",
+    "standard": "^14.3.1",
+    "tailwindcss": "^1.0",
+    "webpack-manifest-plugin": "^2.2.0"
+  },
+  "dependencies": {
+    "react-hot-loader": "^4.12.15",
+    "@hot-loader/react-dom": "^16.9.0"
+  }
 }
