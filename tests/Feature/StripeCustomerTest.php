@@ -25,4 +25,8 @@ class StripeCustomerTest extends TestCase
             'stripe_id' => $customer_id
         ]);
     }
+
+    public function testCustomerSetupIntent() {
+       
+    }
 }
