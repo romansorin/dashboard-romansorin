@@ -46,6 +46,7 @@ class UserTest extends TestCase
             'lastName' => $user->lastName,
             'username' => $user->username,
             'password' => $user->password,
+            'password_confirmation' => $user->password,
             'stripe_id' => $user->stripe_id
         ];
 
