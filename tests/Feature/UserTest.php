@@ -38,9 +38,8 @@ class UserTest extends TestCase
             'password' => $this->faker->password
         ];
 
-        $register = new RegisterController();
-        $register->create($data);
-
+        $response = $this->json('POST', '/register', $data);
+        dd($response);
         $this->assertDatabaseHas('users', $data);
     }
 
