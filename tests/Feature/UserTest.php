@@ -8,8 +8,8 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    protected $user;
     use RefreshDatabase, WithFaker;
+    protected $user;
 
     protected function setUp(): void
     {
@@ -19,7 +19,7 @@ class UserTest extends TestCase
         $this->testNewUserBecomesCustomer();
 
         // Pre-existing user example; assumes RefreshDatabase is not being used
-        // $this->user = \DB::table('users')->where('email', 'ashlynn.koelpin@example.net')->first();
+        // $this->user = \DB::table('users')->where('email', 'a@b.c)->first();
     }
 
     /**
