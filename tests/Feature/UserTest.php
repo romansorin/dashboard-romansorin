@@ -44,6 +44,13 @@ class UserTest extends TestCase
         $this->assertDatabaseHas('users', ['username' => $user_arr['username']]);
     }
 
+    public function testUserCanLogin()
+    {
+        $response = $this->json('POST', '/api/v1/login', ['email' => $this->user->email, 'password' => 'password']);
+
+        $response->assertStatus(302);
+    }
+
     public function testNewUserBecomesCustomer()
     {
         $user_stripe_id = $this->user->stripe_id;
