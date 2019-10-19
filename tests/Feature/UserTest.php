@@ -30,17 +30,19 @@ class UserTest extends TestCase
      */
     public function testUserCanRegister()
     {
-        $data = [
-            'firstName' => $this->faker->firstName,
-            'lastName' => $this->faker->lastName,
-            'username' => $this->faker->userName,
-            'email' => $this->faker->email,
-            'password' => $this->faker->password
+        $user = factory(\App\User::class)->make();
+        $user_arr = [
+            'firstName' => $user->firstName,
+            'lastName' => $user->lastName,
+            'username' => $user->username,
+            'email' => $user->email,
+            'password' => $user->password
         ];
+        dump($user_arr);
+        $response = $this->json('POST', '/register', $user_arr);
 
-        $response = $this->json('POST', '/register', $data);
-        dd($response);
-        $this->assertDatabaseHas('users', $data);
+        $response->assertStatus(302);
+        $this->assertDatabaseHas('users', ['username' => $user_arr['username']]);
     }
 
     public function testNewUserBecomesCustomer()
