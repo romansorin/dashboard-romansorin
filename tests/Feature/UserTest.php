@@ -40,17 +40,13 @@ class UserTest extends TestCase
     public function testExistingUserIsCustomer()
     {
         $prev_id = $this->user->stripe_id;
-
         \DB::table('users')->where('stripe_id', $prev_id)->update(['stripe_id' => '']);
-
         $this->assertDatabaseMissing('users', ['stripe_id' => $prev_id]);
 
         $response = \Stripe\Customer::all(['email' => $this->user->email]);
-
         $this->assertGreaterThan(0, sizeof($response->data));
-        // Add that field to this user
         \DB::table('users')->where('email', $this->user->email)->update(['stripe_id' => $response->data[0]->id]);
-        // Check that the user has the stripe_id property now
+
         $this->assertDatabaseHas('users', ['stripe_id' => $prev_id]);
         $this->assertEquals($prev_id, $response->data[0]->id);
     }
