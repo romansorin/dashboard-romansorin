@@ -1,15 +1,24 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes React and other helpers. It's a great starting point while
- * building robust, powerful web applications using React + Laravel.
- */
+import { hot } from 'react-hot-loader/root'
+import { Switch, Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import Login from './components/Login'
+import Register from './components/Register'
+import Home from './components/Home'
+import Welcome from './components/Welcome'
+import Verify from './components/Verify'
 
-require('./bootstrap');
+const App = () => {
+  return (
+    <div className='App'>
+      <Switch>
+        <Route path='/login' component={Login} />
+        <Route path='/register' component={Register} />
+        <Route path='/verify' component={Verify} />
+        <Route path='/home' component={Home} />
+        <Route path='/' component={Welcome} />
+      </Switch>
+    </div>
+  )
+}
 
-/**
- * Next, we will create a fresh React component instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-require('./components/Example');
+export default hot(App)
