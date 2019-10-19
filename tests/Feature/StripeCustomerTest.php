@@ -10,8 +10,9 @@ use Tests\TestCase;
 class StripeCustomerTest extends TestCase
 {
     use WithFaker;
+
     /**
-     * A basic feature test example.
+     * Check whether or not customer exists and appropriate response
      *
      * @return void
      */
