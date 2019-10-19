@@ -37,7 +37,7 @@ class UserTest extends TestCase
             'email' => $user->email,
             'password' => $user->password
         ];
-        dump($user_arr);
+
         $response = $this->json('POST', '/register', $user_arr);
 
         $response->assertStatus(302);
