@@ -38,7 +38,7 @@ class UserTest extends TestCase
             'password' => $user->password
         ];
 
-        $response = $this->json('POST', '/register', $user_arr);
+        $response = $this->json('POST', '/api/v1/register', $user_arr);
 
         $response->assertStatus(302);
         $this->assertDatabaseHas('users', ['username' => $user_arr['username']]);

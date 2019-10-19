@@ -4,8 +4,6 @@ $spa = function () {
     return view('app');
 };
 
-Auth::routes();
-
 /**
  * Since the forgot password functionality requires a named route, create a
  * named route specifically for that here.
