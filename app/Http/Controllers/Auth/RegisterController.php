@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\StripeCustomerController;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -68,12 +70,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $customer = StripeCustomerController::checkCustomerStatus($data['email']);
+
+        $user =  User::create([
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if ($customer === null) $user->createAsStripeCustomer(['name' => $user->firstName . ' ' . $user->lastName, 'description' => 'Created through dashboard.romansorin.com']);
+        else DB::table('users')->where('email', $user->email)->update(['stripe_id' => $customer]);
+
+        return $user;
     }
 }
