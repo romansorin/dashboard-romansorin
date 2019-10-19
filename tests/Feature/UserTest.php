@@ -46,7 +46,7 @@ class UserTest extends TestCase
 
     public function testUserCanLogin()
     {
-        $response = $this->json('POST', '/api/v1/login', ['email' => $this->user->email, 'password' => 'password']);
+        $response = $this->json('POST', '/api/v1/login', ['username' => $this->user->username, 'password' => 'password']);
 
         $response->assertStatus(302);
     }
