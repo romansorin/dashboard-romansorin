@@ -16,8 +16,8 @@ class UserTest extends TestCase
         parent::setUp();
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $this->user = factory(\App\User::class)->create();
+        $this->user->createAsStripeCustomer();
         $this->testNewUserBecomesCustomer();
-
         // Pre-existing user example; assumes RefreshDatabase is not being used
         // $this->user = \DB::table('users')->where('email', 'a@b.c)->first();
     }
@@ -46,7 +46,6 @@ class UserTest extends TestCase
 
     public function testNewUserBecomesCustomer()
     {
-        $this->user->createAsStripeCustomer();
         $user_stripe_id = $this->user->stripe_id;
 
         $this->assertDatabaseHas('users', ['stripe_id' => $user_stripe_id]);
