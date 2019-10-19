@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use WithFaker;
+    use RefreshDatabase, WithFaker;
     protected $user;
 
     protected function setUp(): void
@@ -29,11 +29,18 @@ class UserTest extends TestCase
         $response->assertStatus(302);
     }
 
+    /**
+     * Tests both registration cases where user is already Stripe customer, and where user is not (create new Stripe customer or update info based on existing customer)
+     *
+     * @return void
+     */
     public function testUserRegistrationFlow()
     {
+        // Set exists to true if the Stripe customer exists and modify email accordingly
         $exists = true;
-        $user = factory(\App\User::class)->make();
+        $existing_email = 'test@romansorin.com';
 
+        $user = factory(\App\User::class)->make();
         $user_arr = [
             'firstName' => $user->firstName,
             'lastName' => $user->lastName,
@@ -42,7 +49,7 @@ class UserTest extends TestCase
             'stripe_id' => $user->stripe_id
         ];
 
-        if ($exists) $user_arr['email']  = 'test@romansorin.com';
+        if ($exists) $user_arr['email']  = $existing_email;
         else $user_arr['email'] = $user->email;
 
         $response = $this->json('POST', '/api/v1/register', $user_arr);
