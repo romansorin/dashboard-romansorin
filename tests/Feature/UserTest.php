@@ -13,6 +13,7 @@ class UserTest extends TestCase
 
     protected function setUp(): void
     {
+        // TODO: Separate these cases into different methods
         parent::setUp();
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $this->user = factory(\App\User::class)->create();
@@ -23,7 +24,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * A basic unit test example.
+     * Tests that a user can be made, inserted into the database through registration API endpoint, and successfully redirected
      *
      * @return void
      */
@@ -39,18 +40,26 @@ class UserTest extends TestCase
         ];
 
         $response = $this->json('POST', '/api/v1/register', $user_arr);
-
         $response->assertStatus(302);
         $this->assertDatabaseHas('users', ['username' => $user_arr['username']]);
     }
 
+    /**
+     * Tests that an existing user can login through login API endpoint and successfully redirected
+     *
+     * @return void
+     */
     public function testUserCanLogin()
     {
         $response = $this->json('POST', '/api/v1/login', ['username' => $this->user->username, 'password' => 'password']);
-
         $response->assertStatus(302);
     }
 
+    /**
+     * Tests that new user becomes Stripe customer on registration
+     *
+     * @return void
+     */
     public function testNewUserBecomesCustomer()
     {
         $user_stripe_id = $this->user->stripe_id;
@@ -58,6 +67,11 @@ class UserTest extends TestCase
         $this->assertDatabaseHas('users', ['stripe_id' => $user_stripe_id]);
     }
 
+    /**
+     * Tests that existing user is Stripe customer on registration, and user object is properly updated
+     *
+     * @return void
+     */
     public function testExistingUserIsCustomer()
     {
         // Case where we're not already using a pre-existing user
