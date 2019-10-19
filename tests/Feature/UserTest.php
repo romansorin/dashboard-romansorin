@@ -31,7 +31,6 @@ class UserTest extends TestCase
     public function testNewUserBecomesCustomer()
     {
         $this->user->createAsStripeCustomer();
-        // dd($user);
         $user_stripe_id = $this->user->stripe_id;
 
         $this->assertDatabaseHas('users', ['stripe_id' => $user_stripe_id]);
