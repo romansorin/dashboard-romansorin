@@ -1,0 +1,29 @@
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use App\Http\Controllers\StripeCustomerController;
+use Tests\TestCase;
+
+class StripeCustomerTest extends TestCase
+{
+    use WithFaker;
+    /**
+     * A basic feature test example.
+     *
+     * @return void
+     */
+    public function testCustomerStatusCheck()
+    {
+        $exists = true;
+        $existing_email = env('STRIPE_EXISTING_EMAIL');
+        $existing_customer_id = env('STRIPE_EXISTING_ID');
+        $controller = new StripeCustomerController();
+
+        $response = $exists ? $controller->checkCustomerStatus($existing_email) : $controller->checkCustomerStatus($this->faker->email);
+
+        $exists ? $this->assertEquals($response, $existing_customer_id) : $this->assertNull($response);
+    }
+}
