@@ -3,12 +3,14 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use App\Http\Controllers\Auth\RegisterController;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
     protected $user;
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     protected function setUp(): void
     {
@@ -26,10 +28,21 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    // public function testUserCanRegister()
-    // {
-    //     // will become api test
-    // }
+    public function testUserCanRegister()
+    {
+        $data = [
+            'firstName' => $this->faker->firstName,
+            'lastName' => $this->faker->lastName,
+            'username' => $this->faker->userName,
+            'email' => $this->faker->email,
+            'password' => $this->faker->password
+        ];
+
+        $register = new RegisterController();
+        $register->create($data);
+
+        $this->assertDatabaseHas('users', $data);
+    }
 
     public function testNewUserBecomesCustomer()
     {
