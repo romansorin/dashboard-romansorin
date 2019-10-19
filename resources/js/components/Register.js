@@ -2,9 +2,11 @@ import React from 'react'
 
 import useRegisterForm from './useRegisterForm'
 
+// ! TODO: Input and state validation
+
 const Register = props => {
   const handleRegister = data => {
-    // some api call
+    // ! TODO: Add in the associated API call
   }
   const register = () => {
     handleRegister({

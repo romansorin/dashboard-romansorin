@@ -2,9 +2,12 @@ import React from 'react'
 
 import useLoginForm from './useLoginForm'
 
+// ! TODO: Input and state validation
+// ! TODO: Checkbox
+
 const Login = () => {
   const handleLogin = data => {
-    // some api call
+    // ! TODO: Add in the associated API call
   }
   const login = () => {
     handleLogin({
