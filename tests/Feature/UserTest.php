@@ -4,7 +4,6 @@ namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use App\Http\Controllers\Auth\RegisterController;
 use Tests\TestCase;
 
 class UserTest extends TestCase
