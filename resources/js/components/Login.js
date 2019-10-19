@@ -1,6 +1,25 @@
 import React from 'react'
 
+import useLoginForm from './useLoginForm'
+
 const Login = () => {
+  const handleLogin = data => {
+    // some api call
+  }
+  const login = () => {
+    handleLogin({
+      username: inputs.username,
+      password: inputs.password
+    })
+  }
+
+  const { inputs, handleInputChange, handleSubmit } = useLoginForm(
+    {
+      username: '',
+      password: ''
+    },
+    login
+  )
   return (
     <div className='container mx-auto'>
       <div className='flex flex-wrap justify-center'>
@@ -10,25 +29,22 @@ const Login = () => {
               Login
             </div>
 
-            <form
-              className='w-full p-6'
-              method='POST'
-              action=" route('login') "
-            >
+            <form className='w-full p-6' action={handleSubmit}>
               <div className='flex flex-wrap mb-6'>
                 <label
-                  for='email'
+                  for='Username'
                   className='block text-gray-700 text-sm font-bold mb-2'
                 >
-                  E-Mail Address
+                  Username
                 </label>
 
                 <input
-                  id='email'
-                  type='email'
+                  id='Username'
+                  type='Username'
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline $errors->has('email') ? ' border-red-500' : '' "
-                  name='email'
-                  value=''
+                  name='Username'
+                  value={inputs.username}
+                  onChange={handleInputChange}
                   required
                   autofocus
                 />
@@ -50,6 +66,8 @@ const Login = () => {
                   type='password'
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline $errors->has('password') ? ' border-red-500' : '' "
                   name='password'
+                  value={inputs.password}
+                  onChange={handleInputChange}
                   required
                 />
 
@@ -81,7 +99,7 @@ const Login = () => {
 
                 <a
                   className='text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline ml-auto'
-                  href=" route('password.request') "
+                  href='#forgotpassword'
                 >
                   Forgot Your Password?
                 </a>
@@ -90,9 +108,9 @@ const Login = () => {
                   Don't have an account?{' '}
                   <a
                     className='text-blue-500 hover:text-blue-700 no-underline'
-                    href=" route('register') "
+                    href='#login'
                   >
-                    Register
+                    Login
                   </a>
                 </p>
               </div>
