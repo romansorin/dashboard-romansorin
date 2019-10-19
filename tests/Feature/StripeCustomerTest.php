@@ -27,4 +27,12 @@ class StripeCustomerTest extends TestCase
 
         $exists ? $this->assertEquals($response, $existing_customer_id) : $this->assertNull($response);
     }
+
+    public function testGetCustomerInvoices()
+    {
+        $existing_customer_id = env('STRIPE_EXISTING_TEST_ID');
+        $response = $this->json('GET', '/api/v1/invoices', ['customer_id' => $existing_customer_id]);
+
+        $response->assertStatus(200);
+    }
 }
