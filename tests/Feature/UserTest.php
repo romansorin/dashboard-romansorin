@@ -8,12 +8,14 @@ use Tests\TestCase;
 class UserTest extends TestCase
 {
     protected $user;
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
         parent::setUp();
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $this->user = factory(\App\User::class)->create();
+        $this->testNewUserBecomesCustomer();
     }
 
     /**
@@ -37,13 +39,19 @@ class UserTest extends TestCase
 
     public function testExistingUserIsCustomer()
     {
-        // Delete all users in the user table
-        DB::table('users')->truncate();
-        // Remove the customer id from this user, then insert this user into the table
-        // Check that customer id is not set
-        // Since that this customer will have already been created and added to Stripe, query Stripe's customer endpoint
-        // Check that the customer exists
+        $prev_id = $this->user->stripe_id;
+
+        \DB::table('users')->where('stripe_id', $prev_id)->update(['stripe_id' => '']);
+
+        $this->assertDatabaseMissing('users', ['stripe_id' => $prev_id]);
+
+        $response = \Stripe\Customer::all(['email' => $this->user->email]);
+
+        $this->assertGreaterThan(0, sizeof($response->data));
         // Add that field to this user
+        \DB::table('users')->where('email', $this->user->email)->update(['stripe_id' => $response->data[0]->id]);
         // Check that the user has the stripe_id property now
+        $this->assertDatabaseHas('users', ['stripe_id' => $prev_id]);
+        $this->assertEquals($prev_id, $response->data[0]->id);
     }
 }
