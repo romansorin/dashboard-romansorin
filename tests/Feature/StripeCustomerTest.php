@@ -18,8 +18,8 @@ class StripeCustomerTest extends TestCase
     public function testCustomerStatusCheck()
     {
         $exists = true;
-        $existing_email = env('STRIPE_EXISTING_EMAIL');
-        $existing_customer_id = env('STRIPE_EXISTING_ID');
+        $existing_email = env('STRIPE_EXISTING_TEST_EMAIL');
+        $existing_customer_id = env('STRIPE_EXISTING_TEST_ID');
         $controller = new StripeCustomerController();
 
         $response = $exists ? $controller->checkCustomerStatus($existing_email) : $controller->checkCustomerStatus($this->faker->email);

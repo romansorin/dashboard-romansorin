@@ -38,7 +38,7 @@ class UserTest extends TestCase
     {
         // Set exists to true if the Stripe customer exists and modify email accordingly
         $exists = true;
-        $existing_email = env('STRIPE_EXISTING_EMAIL');
+        $existing_email = env('STRIPE_EXISTING_TEST_EMAIL');
 
         $user = factory(\App\User::class)->make();
         $user_arr = [
