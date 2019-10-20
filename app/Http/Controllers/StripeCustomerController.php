@@ -21,8 +21,6 @@ class StripeCustomerController extends Controller
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-        $response = Stripe\Invoice::all(['customer' => $request->customer_id]);
-
-        return $response;
+        return Stripe\Invoice::all(['customer' => $request->customer_id]);
     }
 }
