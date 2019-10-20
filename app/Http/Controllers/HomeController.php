@@ -19,11 +19,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-<<<<<<< HEAD
      * @return \Illuminate\Http\Response
-=======
-     * @return \Illuminate\Contracts\Support\Renderable
->>>>>>> master
      */
     public function index()
     {

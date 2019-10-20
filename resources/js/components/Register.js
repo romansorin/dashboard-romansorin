@@ -1,6 +1,33 @@
 import React from 'react'
 
-const Register = () => {
+import useRegisterForm from './useRegisterForm'
+
+// ! TODO: Input and state validation
+
+const Register = props => {
+  const handleRegister = data => {
+    // ! TODO: Add in the associated API call
+  }
+  const register = () => {
+    handleRegister({
+      username: inputs.username,
+      password: inputs.password,
+      password_confirmation: inputs.password_confirmation,
+      firstName: inputs.firstName,
+      lastName: inputs.lastName
+    })
+  }
+
+  const { inputs, handleInputChange, handleSubmit } = useRegisterForm(
+    {
+      username: '',
+      password: '',
+      password_confirmation: '',
+      firstName: '',
+      lastName: ''
+    },
+    register
+  )
   return (
     <div className='container mx-auto'>
       <div className='flex flex-wrap justify-center'>
@@ -10,11 +37,7 @@ const Register = () => {
               Register
             </div>
 
-            <form
-              className='w-full p-6'
-              method='POST'
-              action=" route('register') "
-            >
+            <form className='w-full p-6' onSubmit={handleSubmit}>
               <div className='flex flex-wrap mb-6'>
                 <label
                   for='name'
@@ -24,17 +47,42 @@ const Register = () => {
                 </label>
 
                 <input
-                  id='name'
+                  id='firstName'
                   type='text'
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline $errors->has('name') ? ' border-red-500' : '' "
-                  name='name'
-                  value=" old('name') "
+                  className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                  name='firstName'
+                  onChange={handleInputChange}
+                  value={inputs.firstName}
                   required
                   autofocus
                 />
 
                 <p className='text-red-500 text-xs italic mt-4'>
-                  $errors->first('name')
+                  First name error
+                </p>
+              </div>
+
+              <div className='flex flex-wrap mb-6'>
+                <label
+                  for='name'
+                  className='block text-gray-700 text-sm font-bold mb-2'
+                >
+                  Name
+                </label>
+
+                <input
+                  id='lastName'
+                  type='text'
+                  className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                  name='lastName'
+                  onChange={handleInputChange}
+                  value={inputs.lastName}
+                  required
+                  autofocus
+                />
+
+                <p className='text-red-500 text-xs italic mt-4'>
+                  Last name error
                 </p>
               </div>
 
@@ -49,15 +97,14 @@ const Register = () => {
                 <input
                   id='email'
                   type='email'
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline $errors->has('email') ? ' border-red-500' : '' "
+                  className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                   name='email'
-                  value=" old('email') "
+                  onChange={handleInputChange}
+                  value={inputs.email}
                   required
                 />
 
-                <p className='text-red-500 text-xs italic mt-4'>
-                  $errors->first('email')
-                </p>
+                <p className='text-red-500 text-xs italic mt-4'>Email error</p>
               </div>
 
               <div className='flex flex-wrap mb-6'>
@@ -71,13 +118,15 @@ const Register = () => {
                 <input
                   id='password'
                   type='password'
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline $errors->has('password') ? ' border-red-500' : '' "
+                  className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-red-500'
                   name='password'
+                  onChange={handleInputChange}
+                  value={inputs.password}
                   required
                 />
 
                 <p className='text-red-500 text-xs italic mt-4'>
-                  $errors->first('password')
+                  Password error
                 </p>
               </div>
 
@@ -90,10 +139,12 @@ const Register = () => {
                 </label>
 
                 <input
-                  id='password-confirm'
+                  id='password_confirmation'
                   type='password'
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                   name='password_confirmation'
+                  onChange={handleInputChange}
+                  value={inputs.password_confirmation}
                   required
                 />
               </div>
@@ -110,7 +161,7 @@ const Register = () => {
                   Already have an account?
                   <a
                     className='text-blue-500 hover:text-blue-700 no-underline'
-                    href=" route('login') "
+                    href='#login'
                   >
                     Login
                   </a>

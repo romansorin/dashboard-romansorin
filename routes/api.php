@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->group(function () {
+    Auth::routes();
+
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::post('/invoices', 'StripeCustomerController@getCustomerInvoices');
+
+        Route::get('/user', function (Request $request) {
+            return $request->user();
+        });
+    });
 });
