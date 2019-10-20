@@ -5,11 +5,12 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Http\Controllers\StripeCustomerController;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class StripeCustomerTest extends TestCase
 {
-    use WithFaker;
+    use RefreshDatabase, WithFaker;
 
     /**
      * Check whether or not customer exists and appropriate response
@@ -31,7 +32,11 @@ class StripeCustomerTest extends TestCase
     public function testGetCustomerInvoices()
     {
         $existing_customer_id = env('STRIPE_EXISTING_TEST_ID');
-        $response = $this->json('GET', '/api/v1/invoices', ['customer_id' => $existing_customer_id]);
+        Passport::actingAs(
+            factory(\App\User::class)->create()
+        );
+
+        $response = $this->json('POST', '/api/v1/invoices', ['customer_id' => $existing_customer_id]);
 
         $response->assertStatus(200);
     }

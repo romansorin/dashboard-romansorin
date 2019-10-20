@@ -20,10 +20,11 @@ class StripeCustomerController extends Controller
         }
     }
 
-    public static function getCustomerInvoices($customer_id)
+    public static function getCustomerInvoices(Request $request)
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        $response = Stripe\Invoice::all(['customer' => $customer_id]);
+
+        $response = Stripe\Invoice::all(['customer' => $request->customer_id]);
 
         return $response;
     }

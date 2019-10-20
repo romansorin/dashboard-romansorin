@@ -17,6 +17,8 @@ Route::prefix('v1')->group(function () {
     Auth::routes();
 
     Route::group(['middleware' => 'auth:api'], function () {
+        Route::post('/invoices', 'StripeCustomerController@getCustomerInvoices');
+
         Route::get('/user', function (Request $request) {
             return $request->user();
         });
