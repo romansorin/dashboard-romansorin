@@ -13,11 +13,8 @@ class StripeCustomerController extends Controller
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $response = Stripe\Customer::all(['email' => $email]);
 
-        if (sizeof($response->data) > 0) {
-            return $response->data[0]->id;
-        } else {
-            return null;
-        }
+        if (sizeof($response->data) > 0) return $response->data[0]->id;
+        else return null;
     }
 
     public static function getCustomerInvoices(Request $request)

@@ -13,7 +13,6 @@ class UserTest extends TestCase
 
     protected function setUp(): void
     {
-        // TODO: Separate these cases into different methods
         parent::setUp();
         $this->user = factory(\App\User::class)->create();
     }
