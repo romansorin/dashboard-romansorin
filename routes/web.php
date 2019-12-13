@@ -9,6 +9,7 @@ $spa = function () {
  * named route specifically for that here.
  */
 Route::get('reset-password/{token}', $spa)->name('password.reset');
+
 /**
  * Catchall route for the single page application
  */
