@@ -20,7 +20,7 @@
         "@storybook/addon-links": "^5.2.3",
         "@storybook/addons": "^5.2.3",
         "@storybook/react": "^5.2.3",
-        "axios": "^0.19",
+        "axios": "^0.21",
         "babel-loader": "^8.0.6",
         "cross-env": "^5.1",
         "jest": "^24.9.0",
